@@ -1,13 +1,13 @@
 package net.zz.sql.filter;
 
+import net.zz.dao.params.Order;
 import net.zz.dao.params.Order.OrderAD;
 import net.zz.dao.params.QueryParams;
-import net.zz.dao.params.Restriction;
 import net.zz.dao.params.Where;
+import net.zz.dao.params.enums.Restriction;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
-import java.util.Map;
 
 /**
  * Created by ZaoSheng on 2015/10/25.
@@ -15,7 +15,7 @@ import java.util.Map;
 public class SqlFilter {
     private HttpServletRequest request;// 为了获取request里面传过来的动态参数
     private String column;
-    private OrderAD order;
+    private Order.OrderAD order;
     Where params = new Where().where();
 
 	/**

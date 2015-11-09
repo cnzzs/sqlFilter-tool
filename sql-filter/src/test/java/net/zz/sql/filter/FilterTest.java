@@ -1,19 +1,19 @@
-package net.zz.sql.test;
+package net.zz.sql.filter;
 
 import net.zz.dao.params.Order;
 import net.zz.dao.params.QueryParams;
-import net.zz.sql.filter.SqlFilter;
 import org.junit.Test;
 
 import java.util.Map;
 
 /**
- * Created by ZaoSheng on 2015/11/7.
+ * Created by ZaoSheng on 2015/11/10.
  */
-public class SqlFilterTest {
-    @Test
-    public void test() {
+public class FilterTest {
 
+    @Test
+    public void test()
+    {
         SqlFilter filter = new SqlFilter();
         filter.addFilter("QUERY^t#id^|^EQ",1);
         filter.addFilter("QUERY^t#name^!|^EQ","张三");
@@ -21,6 +21,7 @@ public class SqlFilterTest {
         filter.setOrder(Order.OrderAD.DESC);
         filter.setOrder();
         QueryParams queryParams = filter.getQueryParams();
+//        queryParams.where();
         System.out.println(queryParams.builderAttrs().getSqlString());
         Map<String, Object> attrs = queryParams.getAttrs();
         for (String key : attrs.keySet()){
