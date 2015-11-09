@@ -8,9 +8,25 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
+    <packaging>war</packaging>
     <groupId>net.zz.sql</groupId>
     <artifactId>demo</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>net.zz.sql</groupId>
+            <artifactId>dao-params</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.zz.sql</groupId>
+            <artifactId>sql-filter</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>
