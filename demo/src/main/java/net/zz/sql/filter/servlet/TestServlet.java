@@ -37,22 +37,22 @@ public class TestServlet extends HttpServlet {
                 "    <title></title>\n" +
                 "</head>\n" +
                 "<body>");
-        writer.println("------?代替形式------<br/>");
+        writer.println("------? Instead of the form ------<br/>");
         writer.println("sql:" + sql);
         int i = 0;
         writer.println("<br/>");
         for (Object v: params.getParas()){
-            writer.print(String.format("第%s个?:%S", ++i, v));
+            writer.print(String.format("P%s:%s &nbsp;&nbsp;", ++i, v));
         }
         writer.println("<br/>");
-        writer.println("------key,value形式------<br/>");
+        writer.println("------The key, the value form ------<br/>");
         params.builderAttrs();
         writer.println("sql:from test " + params.alias() + params.toSQL());
         writer.println("<br/>");
 
         Map<String, Object> attrs = params.getAttrs();
         for (Object key: attrs.keySet()){
-            writer.println(String.format("key:%s; value:%s &nbsp;&nbsp;", key, attrs.get(key)));
+            writer.println(String.format("key:%s; value:%s ", key, attrs.get(key)));
             writer.println("<br/>");
         }
         writer.write("</body>\n" +
