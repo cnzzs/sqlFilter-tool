@@ -41,7 +41,7 @@ According to certain rules to generate SQL or HQL
 
 ###Effect of the page
 
-![image](https://github.com/cnzzs/sqlFilter-tool/demo/src/main/resources/pageTest.png)
+![image](https://github.com/cnzzs/sqlFilter-tool/blob/master/demo/src/main/resources/pageTest.png?raw=true)
 
 
 ###The results
