@@ -63,4 +63,21 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+                <env>local</env>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>proc</id>
+            <properties>
+                <env>proc</env>
+            </properties>
+        </profile>
+    </profiles>
 </project>

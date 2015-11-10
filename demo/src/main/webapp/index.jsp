@@ -10,7 +10,36 @@
   <head>
     <title></title>
   </head>
-  <body>
+  <style type="text/css">
+      .top{
 
+          width: 100%;
+          height: 50px;
+          text-align: center;
+      }
+      .content{
+          border: 1px solid #666;
+          width: 100%;
+          height: 600px;
+      }
+
+
+
+
+  </style>
+  <body>
+<div class="top">Dynamically generated sql</div>
+ <div class="content">
+
+        <div class="column">
+            <form action="/testServlet" method="post">
+            name(and ; right like):<input name="QUERY^t#name^!|^RLK"/><br/>
+            age(and ; >=):<input name="QUERY^t#age^!|^GE"/><br/>
+            sex(or ; =):<input name="QUERY^t#sex^|^EQ"/><br/>
+                <input type="submit" value="generated">
+            </form>
+        </div>
+
+ </div>
   </body>
 </html>
