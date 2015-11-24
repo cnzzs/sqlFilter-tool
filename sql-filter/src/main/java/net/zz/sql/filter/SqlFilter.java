@@ -7,7 +7,9 @@ import net.zz.dao.params.Where;
 import net.zz.dao.params.enums.Restriction;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 import java.util.Enumeration;
+import java.util.List;
 
 /**
  * Created by ZaoSheng on 2015/10/25.
@@ -95,8 +97,17 @@ public class SqlFilter {
 		Enumeration<String> names = request.getParameterNames();
 		while (names.hasMoreElements()) {
 			String name = names.nextElement();
-			String value = request.getParameter(name);
-			addFilter(name, value);
+//            String value = request.getParameter(name);
+            String[] values =  request.getParameterValues(name);//需要对应值
+            if (values.length > 1 )
+            {
+                addFilter(name, Arrays.asList(values));
+            }else {
+                addFilter(name, values[0]);
+
+            }
+
+
 		}
 	}
 	
@@ -119,7 +130,7 @@ public class SqlFilter {
 				String[] filterParams = name.split("\\^");
 //				String[] filterParams = StringUtils.split(name, "_");
 				if (filterParams.length == 4) {
-                    String[] ppn =  filterParams[1].split("#");
+                    String[] ppn =  filterParams[1].split("\\#");
                     String prefix = ppn[0]; //表的别名
 					String propertyName = constructCol(ppn[1]);// 要过滤的字段名称
 					String ao = filterParams[2];// 操作的逻辑
@@ -128,6 +139,12 @@ public class SqlFilter {
                     if (null != operator)
                     {
                         restriction = Restriction.valueOf(operator.toUpperCase());
+                        switch (restriction)
+                        {
+                          case BW:
+                              if (value instanceof List) value = ((List) value).toArray();
+                              break;
+                        }
                     }
                     if ("|".equals(ao)){
                         params.or(propertyName, value, restriction, prefix);
