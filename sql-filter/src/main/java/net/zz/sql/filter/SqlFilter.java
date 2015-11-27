@@ -61,12 +61,12 @@ public class SqlFilter {
 
 
 		if (!isBlank(column) && null != order) {
-            int index = column.indexOf(".");
-			if ( index < 1) {
-                setOrderValue(null);
-			}else{
-                setOrderValue( column.substring(index));
-            }
+	            int index = column.indexOf(".");
+				if ( index < 1) {
+	                setOrderValue(null);
+				}else{
+	                setOrderValue( column.substring(index));
+	            }
 
 		} else {
 			if (request != null) {
@@ -75,14 +75,14 @@ public class SqlFilter {
 				if (isBlank(s) || isBlank(o)) {
 					return;
 				}
-                column = s;
-				order = OrderAD.valueOf(o);
-                int index = column.indexOf(".");
-                if ( index < 1) {
-                    setOrderValue( null);
-                }else{
-                    setOrderValue( column.substring(index));
-                }
+	                	column = s;
+				order = OrderAD.valueOf(o.toUpperCase());
+	                	int index = column.indexOf(".");
+		                if ( index < 1) {
+		                    setOrderValue( null);
+		                }else{
+		                    setOrderValue( column.substring(index));
+		                }
 
 			}
 		}
