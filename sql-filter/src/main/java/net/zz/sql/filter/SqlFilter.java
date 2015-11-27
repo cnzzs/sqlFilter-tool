@@ -130,27 +130,28 @@ public class SqlFilter {
 				String[] filterParams = name.split("\\^");
 //				String[] filterParams = StringUtils.split(name, "_");
 				if (filterParams.length == 4) {
-                    String[] ppn =  filterParams[1].split("\\#");
-                    String prefix = ppn[0]; //表的别名
-					String propertyName = constructCol(ppn[1]);// 要过滤的字段名称
-					String ao = filterParams[2];// 操作的逻辑
-					String operator = filterParams[3];// SQL操作符
-                    Restriction restriction = Restriction.EQ;
-                    if (null != operator)
-                    {
-                        restriction = Restriction.valueOf(operator.toUpperCase());
-                        switch (restriction)
-                        {
-                          case BW:
-                              if (value instanceof List) value = ((List) value).toArray();
-                              break;
-                        }
-                    }
-                    if ("|".equals(ao)){
-                        params.or(propertyName, value, restriction, prefix);
-                    }else{
-                        params.and(propertyName, value, restriction, prefix);
-                    }
+		                    String[] ppn =  filterParams[1].split("\\#");
+		                    String prefix = ppn[0]; //表的别名
+				    //String propertyName = constructCol(ppn[1]);// 要过滤的字段名称
+				    String propertyName = ppn[1];// 要过滤的字段名称
+				    String ao = filterParams[2];// 操作的逻辑
+				    String operator = filterParams[3];// SQL操作符
+		                    Restriction restriction = Restriction.EQ;
+		                    if (null != operator)
+		                    {
+		                        restriction = Restriction.valueOf(operator.toUpperCase());
+		                        switch (restriction)
+		                        {
+		                          case BW:
+		                              if (value instanceof List) value = ((List) value).toArray();
+		                              break;
+		                        }
+		                    }
+		                    if ("|".equals(ao)){
+		                        params.or(propertyName, value, restriction, prefix);
+		                    }else{
+		                        params.and(propertyName, value, restriction, prefix);
+		                    }
 				}
 			}
 		}
