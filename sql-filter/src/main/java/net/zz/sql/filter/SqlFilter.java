@@ -123,7 +123,7 @@ public class SqlFilter {
      * @param value
      */
     public void addFilter(String name, Object value) {
-
+		
         if (name != null && value != null) {
             if (name.startsWith("QUERY^")) {// 如果有需要过滤的字段
                 String[] filterParams = name.split("\\^");
@@ -138,9 +138,12 @@ public class SqlFilter {
                     net.zz.sql.filter.Type type = null;
                     try {
                         restriction = Restriction.valueOf(filterParams[3].toUpperCase());// SQL操作符
-                        type = net.zz.sql.filter.Type.valueOf(filterParams[4]);// 参数类型
                     } catch (Exception e) {
                         restriction = Restriction.EQ;
+                    }
+                    try{
+                        type = net.zz.sql.filter.Type.valueOf(filterParams[4]);// 参数类型
+                    } catch (Exception e) {
                         type = net.zz.sql.filter.Type.S;
                     }
                     switch (restriction) {
@@ -216,5 +219,10 @@ public class SqlFilter {
 
     public void setOrder(OrderAD order) {
         this.order = order;
+    }
+
+    public static void main(String[] args) {
+        String a = "1";
+
     }
 }
