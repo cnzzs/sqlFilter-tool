@@ -221,8 +221,5 @@ public class SqlFilter {
         this.order = order;
     }
 
-    public static void main(String[] args) {
-        String a = "1";
 
-    }
 }
