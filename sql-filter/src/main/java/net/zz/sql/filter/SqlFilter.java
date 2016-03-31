@@ -101,7 +101,7 @@ public class SqlFilter {
             String[] values = request.getParameterValues(name);//需要对应值
 
             if (values.length > 1) {
-                addFilter(name, Arrays.asList(values));
+                addFilter(name, Arrays.asList((Object[])values));
             } else {
                 addFilter(name, values[0]);
             }
@@ -123,7 +123,7 @@ public class SqlFilter {
      * @param value
      */
     public void addFilter(String name, Object value) {
-		
+
         if (name != null && value != null) {
             if (name.startsWith("QUERY^")) {// 如果有需要过滤的字段
                 String[] filterParams = name.split("\\^");
@@ -148,18 +148,26 @@ public class SqlFilter {
                     }
                     switch (restriction) {
                         case BW:
-                            List list = (List) value;
-                            int size = list.size();
-                            Object[] os = new Object[size];
-                            for (int i = 0; i < size; i++) {
-                                os[i] = type.parse(list.get(i).toString());
+                            Object[] os = null;
+                            if (value instanceof String){
+                                os = ((String) value).split(",");
+                            }else {
+                                List list  = (List) value;
+                                int size = list.size();
+                                os = new Object[size];
+                                list.toArray(os);
                             }
                             value = os;
                             break;
                         case IN:
                         case NIN:
-                             list = (List) value;
-                             size = list.size();
+                            List list = null;
+                            if (value instanceof String){
+                                list = Arrays.asList(((String) value).split(","));
+                            }else {
+                                 list  = (List) value;
+                            }
+                            int size = list.size();
                             List<Object> vs = new ArrayList<Object>(size);
                             for (int i = 0; i < size; i++) {
                                 vs.add(type.parse(list.get(i).toString()));
@@ -185,8 +193,6 @@ public class SqlFilter {
         String A = "^[A-Z]";
         StringBuffer col = new StringBuffer();
         for (int i = 0; i < str.length(); i++) {
-            //str.charAt(i)
-
             if (String.valueOf(str.charAt(i)).matches(A)) {
                 col.append("_");
             }
@@ -221,5 +227,8 @@ public class SqlFilter {
         this.order = order;
     }
 
+    public static void main(String[] args) {
+        String a = "1";
 
+    }
 }
